@@ -1,0 +1,7 @@
+.idea
+env
+.coverage
+*pyc
+build
+dist
+ndtest.egg-info

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+PY_ENV_HOME=${WORKSPACE}/.pyenv/
+
+. ${PY_ENV_HOME}/bin/activate
+
+nosetests --with-xcoverage --with-xunit --cover-erase --cover-package=ndtest ${WORKSPACE}/tests
+pylint -f parseable ndtest/ | tee pylint.out

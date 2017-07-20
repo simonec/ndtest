@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+PY_ENV_HOME=${WORKSPACE}/.pyenv/
+
+virtualenv ${PY_ENV_HOME}
+
+. ${PY_ENV_HOME}/bin/activate
+
+pip install -r requirements.txt
