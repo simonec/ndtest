@@ -18,5 +18,5 @@ def ndtest(old_path, new_path, reverse):
     """
     old_data, new_data = loader.load(old_path), loader.load(new_path)
 
-    data = inspection.Analyzer.analyze(old_data, new_data)
+    data = inspection.Collator.analyze(old_data, new_data)
     output.print_results(data, old_data, new_data, reverse)

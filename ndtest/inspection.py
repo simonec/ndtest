@@ -31,7 +31,7 @@ class OverlapMetadata(object):
             percent_old=self.percent_old, percent_new=self.percent_new)
 
 
-class Analyzer(object):
+class Collator(object):
     """ It takes to list of boxes coming from inspections and """
 
     CONTINUE = "CONTINUE"
@@ -41,7 +41,7 @@ class Analyzer(object):
     @classmethod
     def _prompt_statement(cls, old_box, new_box):
         if old_box.x + old_box.l <= new_box.x:
-            # <TEST>test_analysis__new_after_old_along_x__empty</TEST>
+            # <TEST>test_analyze__new_after_old_along_x__empty</TEST>
             #
             # Because of the sorting applied by `loader.load` we have to continue the cycle along the old data,
             # since we are sure that later boxes in the cycle are closer than the current.
@@ -49,14 +49,14 @@ class Analyzer(object):
 
         if new_box.a + new_box.w > 360:
             if old_box.a >= new_box.a + new_box.w - 360 and old_box.a + old_box.w <= new_box.a:
-                # <TEST>test_analysis__new_circular_vs_old_plain__middle</TEST>
+                # <TEST>test_analyze__new_circular_vs_old_plain__middle</TEST>
                 #
                 # A portion of old box lies in the empty space between the bottom and the top of new box.
                 return cls.CONTINUE
-                # <TEST>test_analysis__new_circular_vs_old_plain__down</TEST>
-                # <TEST>test_analysis__new_circular_vs_old_plain__up</TEST>
+                # <TEST>test_analyze__new_circular_vs_old_plain__down</TEST>
+                # <TEST>test_analyze__new_circular_vs_old_plain__up</TEST>
         elif old_box.a + old_box.w <= new_box.a:
-            # <TEST>test_analysis__new_after_old_along_a__empty</TEST>
+            # <TEST>test_analyze__new_after_old_along_a__empty</TEST>
             #
             # We have to skip old_box because it doesn't overlap with new_box.
             # However, because of the sorting applied by `loader.load` we must continue the cycle since
@@ -64,7 +64,7 @@ class Analyzer(object):
             return cls.CONTINUE
 
         if new_box.x + new_box.l <= old_box.x:
-            # <TEST>test_analysis__old_after_new_along_x__empty</TEST>
+            # <TEST>test_analyze__old_after_new_along_x__empty</TEST>
             #
             # Because of the sorting applied by `loader.load` we can now break the cycle along the old data,
             # since we are sure that later boxes in the cycle are further away in the pipeline.
@@ -72,14 +72,14 @@ class Analyzer(object):
 
         if old_box.a + old_box.w > 360:
             if new_box.a >= old_box.a + old_box.w - 360 and new_box.a + new_box.w <= old_box.a:
-                # <TEST>test_analysis__old_circular_vs_new_plain__middle</TEST>
+                # <TEST>test_analyze__old_circular_vs_new_plain__middle</TEST>
                 #
                 # A portion of new box lies in the empty space between the bottom and the top of old box.
                 return cls.CONTINUE
-                # <TEST>test_analysis__old_circular_vs_new_plain__down</TEST>
-                # <TEST>test_analysis__old_circular_vs_new_plain__up</TEST>
+                # <TEST>test_analyze__old_circular_vs_new_plain__down</TEST>
+                # <TEST>test_analyze__old_circular_vs_new_plain__up</TEST>
         elif new_box.a + new_box.w <= old_box.a:
-            # <TEST>test_analysis__old_after_new_along_a__empty</TEST>
+            # <TEST>test_analyze__old_after_new_along_a__empty</TEST>
             #
             # We have to skip old_box because it doesn't overlap with new_box.
             # However, because of the sorting applied by `loader.load` we must continue the cycle since
