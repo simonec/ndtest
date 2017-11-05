@@ -5,3 +5,5 @@ env
 build
 dist
 ndtest.egg-info
+.cache/
+tests/__pycache__/
