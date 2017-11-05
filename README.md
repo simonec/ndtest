@@ -8,7 +8,7 @@
 `make`  
 `make test`  
 `source env/bin/activate`  
-`python setup.py install`  
+`make develop` or `make install`  
 `ndtest --old <path_to_old_inspection_csv --new <path_to_new_inspection_csv> [--reverse]`
 
 Output is pretty basic and shows as many sections as the number of new boxes and for each section are listed (if any) the overlapped old boxes and the percentages of coverage of both new and old boxes.  
