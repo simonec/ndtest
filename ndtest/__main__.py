@@ -1,9 +1,7 @@
 import argparse
 import os
 
-from ndtest import loader
-from ndtest import inspection
-from ndtest import output
+import app
 
 
 def main():
@@ -21,10 +19,7 @@ def main():
         print '--new arguments must be a valid file path'
         return
 
-    old_data, new_data = loader.load(args.old), loader.load(args.new)
-
-    data = inspection.Analyzer.analyze(old_data, new_data)
-    output.print_results(data, old_data, new_data, args.reverse)
+    app.ndtest(args.old, args.new, args.reverse)
 
 
 if __name__ == "__main__":
