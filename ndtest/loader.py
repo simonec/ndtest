@@ -7,6 +7,7 @@ import model
 class DataLoaderException(Exception):
     """ Custom data loader exception """
 
+
 CSV_HEADER = ['id', 'x', 'l', 'a', 'w']
 
 
